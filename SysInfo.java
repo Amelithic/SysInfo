@@ -21,37 +21,41 @@ public class SysInfo {
         boolean activeChoice = true; //program active means loop runs after one option selected
 
         while (activeChoice) {
-            if (selection == 1) {
-                System.out.println("TEST");
-                System.out.println();//newline
+            switch (selection) {
+                case 0:
+                    System.out.println("TEST");
+                    System.out.println();//newline
 
-                mainMenu();
-                selection = input.nextInt();
+                    mainMenu();
+                    selection = input.nextInt();
+                    break;
 
-            } else if (selection == 2) {
-                System.out.println("TEST");
-                System.out.println();//newline
+                case 1:
+                    System.out.println("TEST");
+                    System.out.println();//newline
 
-                mainMenu();
-                selection = input.nextInt();
+                    mainMenu();
+                    selection = input.nextInt();
+                    break;
 
-            } else if (selection == 3) {
-                System.out.println("TEST");
-                System.out.println();//newline
+                case 2:
+                    System.out.println("TEST");
+                    System.out.println();//newline
 
-                mainMenu();
-                selection = input.nextInt();
+                    mainMenu();
+                    selection = input.nextInt();
+                    break;
 
-            } else if (selection == 4) {
-                System.out.println("Exiting...");
-                activeChoice = false;
+                case 3:
+                    System.out.println("Exiting...");
+                    activeChoice = false;
+                    break;
 
-            } else {
-                System.out.println("Invalid number, please try again.\n");
-                mainMenu();
-                selection = input.nextInt();
-
-            }
+                default:
+                    System.out.println("Invalid number, please try again.\n");
+                    mainMenu();
+                    selection = input.nextInt();
+            } //end switch
         }//end while
 
     }
