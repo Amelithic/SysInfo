@@ -36,6 +36,8 @@ public class SysInfo {
                     ramInfo.printString("here is test");
 
                     System.out.println();//newline
+                    RamInfo ramInfoInstance = new RamInfo();
+                    ramInfoInstance.printString("this is a test");
 
                     mainMenu();
                     selection = input.nextInt();
@@ -51,7 +53,10 @@ public class SysInfo {
 
                 case 3:
                     System.out.println("Attatched");
-                    activeChoice = false;
+                    System.out.println();//newline
+
+                    mainMenu();
+                    selection = input.nextInt();
                     break;
 
                     
@@ -69,27 +74,4 @@ public class SysInfo {
         }//end while
 
     }
-}
-
-class pciInfo {
-    // Refresh the current values and counters - call this before other methods
-    public native void read ();
-
-    // Return the number of PCI buses
-    public native int busCount ();
-
-    // Return the number of devices on a PCI bus
-    public native int deviceCount (int bus);
-
-    // Return the number of functions in a PCI device
-    public native int functionCount (int bus, int device);
-
-    // Return the number of functions in a PCI device
-    public native int functionPresent (int bus, int device, int function);
-
-    // Return the vendor ID of a PCI device
-    public native int vendorID (int bus, int device, int function);
-
-    // Return the product ID of a PCI device
-    public native int productID (int bus, int device, int function);
 }
