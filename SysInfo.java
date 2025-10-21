@@ -32,6 +32,9 @@ public class SysInfo {
 
                 case 1:
                     System.out.println("Memory");
+                    RamInfo ramInfo = new RamInfo();
+                    ramInfo.printString("here is test");
+
                     System.out.println();//newline
 
                     mainMenu();
