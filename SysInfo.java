@@ -1,11 +1,13 @@
 import java.util.*;
 
 public class SysInfo {
+
     static void mainMenu() {
         System.out.println("SysInfo\n==================\nSelect an option below by entering its number:");
-        System.out.println("1:\tx");
-        System.out.println("2:\tx");
-        System.out.println("3:\tx");
+        System.out.println("0:\tCPU");
+        System.out.println("1:\tMemory");
+        System.out.println("2:\tDisk");
+        System.out.println("3:\tAttached Devices");
         System.out.println("4:\tExit");
         System.out.println();
     }
@@ -32,8 +34,12 @@ public class SysInfo {
 
                 case 1:
                     System.out.println("Memory");
-                    System.out.println();//newline
+                    RamInfo ramInfoInstance = new RamInfo();
+                    ramInfoInstance.printString("this is a test");
+                    ramInfoInstance.getTotal();
 
+
+                    System.out.println();//newline
                     mainMenu();
                     selection = input.nextInt();
                     break;
@@ -47,7 +53,7 @@ public class SysInfo {
                     break;
 
                 case 3:
-                    System.out.println("Attatched");
+                    System.out.println("Attached Devices");
                     System.out.println();//newline
 
                     mainMenu();
