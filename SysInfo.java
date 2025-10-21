@@ -33,6 +33,8 @@ public class SysInfo {
                 case 1:
                     System.out.println("Memory");
                     System.out.println();//newline
+                    RamInfo ramInfoInstance = new RamInfo();
+                    ramInfoInstance.printString("this is a test");
 
                     mainMenu();
                     selection = input.nextInt();
