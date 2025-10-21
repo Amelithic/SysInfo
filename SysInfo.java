@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class SysInfo {
+
     static void mainMenu() {
         System.out.println("SysInfo\n==================\nSelect an option below by entering its number:");
         System.out.println("0:\tCPU");
@@ -33,13 +34,12 @@ public class SysInfo {
 
                 case 1:
                     System.out.println("Memory");
-                    RamInfo ramInfo = new RamInfo();
-                    ramInfo.printString("here is test");
-
-                    System.out.println();//newline
                     RamInfo ramInfoInstance = new RamInfo();
                     ramInfoInstance.printString("this is a test");
+                    ramInfoInstance.getTotal();
 
+
+                    System.out.println();//newline
                     mainMenu();
                     selection = input.nextInt();
                     break;
