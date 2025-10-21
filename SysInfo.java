@@ -23,7 +23,7 @@ public class SysInfo {
         while (activeChoice) {
             switch (selection) {
                 case 0:
-                    System.out.println("TEST");
+                    System.out.println("CPU");
                     System.out.println();//newline
 
                     mainMenu();
@@ -31,7 +31,7 @@ public class SysInfo {
                     break;
 
                 case 1:
-                    System.out.println("TEST");
+                    System.out.println("Memory");
                     System.out.println();//newline
 
                     mainMenu();
@@ -39,7 +39,7 @@ public class SysInfo {
                     break;
 
                 case 2:
-                    System.out.println("TEST");
+                    System.out.println("dISK");
                     System.out.println();//newline
 
                     mainMenu();
@@ -47,7 +47,14 @@ public class SysInfo {
                     break;
 
                 case 3:
-                    System.out.println("Exiting...");
+                    System.out.println("disk");
+                    activeChoice = false;
+                    break;
+
+                    
+
+                case 4:
+                    System.out.println("Exiting program...");
                     activeChoice = false;
                     break;
 
