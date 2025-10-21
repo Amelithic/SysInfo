@@ -3,7 +3,12 @@
 *Project to create a "sysinfo" utility in Java that describes computer CPU, speed, RAM, disk, attached devices.*
 
 Collaborators: Amelie McCarthy, Aidan Tomasko, Adam Ryan, Anav Vashisht
-Group 13
+Group 13 - A4
+
+Amelie - RAM
+Adam - CPU
+Aidan - Attatched
+Anav - Disks
 
 ---
 
