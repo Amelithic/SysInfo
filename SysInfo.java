@@ -39,7 +39,7 @@ public class SysInfo {
                     break;
 
                 case 2:
-                    System.out.println("dISK");
+                    System.out.println("Disk");
                     System.out.println();//newline
 
                     mainMenu();
@@ -47,7 +47,7 @@ public class SysInfo {
                     break;
 
                 case 3:
-                    System.out.println("disk");
+                    System.out.println("Attatched");
                     activeChoice = false;
                     break;
 
@@ -66,4 +66,27 @@ public class SysInfo {
         }//end while
 
     }
+}
+
+class pciInfo {
+    // Refresh the current values and counters - call this before other methods
+    public native void read ();
+
+    // Return the number of PCI buses
+    public native int busCount ();
+
+    // Return the number of devices on a PCI bus
+    public native int deviceCount (int bus);
+
+    // Return the number of functions in a PCI device
+    public native int functionCount (int bus, int device);
+
+    // Return the number of functions in a PCI device
+    public native int functionPresent (int bus, int device, int function);
+
+    // Return the vendor ID of a PCI device
+    public native int vendorID (int bus, int device, int function);
+
+    // Return the product ID of a PCI device
+    public native int productID (int bus, int device, int function);
 }
