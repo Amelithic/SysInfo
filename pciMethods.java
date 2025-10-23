@@ -5,5 +5,5 @@ class pciMethods {
 }
 
 class pciArrays {
-    private ArrayList<PCIS> pciArray;
+    //private ArrayList<PCIS> pciArray;
 }

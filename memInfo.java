@@ -3,7 +3,7 @@
 public class memInfo {
     static {
         // Loading Mark's Library
-        System.loadLibrary("libsysinfo"); //libsysinfo.so
+        System.loadLibrary("sysinfo"); //libsysinfo.so
     }
 
 
