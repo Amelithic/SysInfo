@@ -2,19 +2,8 @@ import java.util.*;
 
 public class SysInfo {
 
-    static void mainMenu() {
-        System.out.println("SysInfo\n==================\nSelect an option below by entering its number:");
-        System.out.println("1:\tCPU");
-        System.out.println("2:\tMemory");
-        System.out.println("3:\tDisk");
-        System.out.println("4:\tAttached Devices");
-        System.out.println("5:\tExit");
-        System.out.println();
-    }
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in); // Creating Scanner object
-
 
         mainMenu();
 
@@ -29,18 +18,20 @@ public class SysInfo {
                     System.out.println();//newline
 
                     cpuInfo testCPU = new cpuInfo();
-                    testCPU.read();
+                    testCPU.testDisplayCPU();
 
                     mainMenu();
                     selection = input.nextInt();
                     break;
 
                 case 2:
+                    Style.resetScreen();
                     System.out.println("Memory");
                     memInfo ramInfoInstance = new memInfo();
                     ramInfoInstance.printString("this is a test");
 
-                    System.out.println();//newline
+                    Style.waitBuffer();
+                    Style.resetScreen();
                     mainMenu();
                     selection = input.nextInt();
                     break;
@@ -83,5 +74,15 @@ public class SysInfo {
             } //end switch
         }//end while - main menu
 
+    }
+
+    static void mainMenu() {
+        System.out.println(Style.BOLD+Style.RED_FG+"SysInfo\n==================\nSelect an option below by entering its number:"+Style.RESET_CODE);
+        System.out.println("1:\tCPU");
+        System.out.println("2:\tMemory");
+        System.out.println("3:\tDisk");
+        System.out.println("4:\tAttached Devices");
+        System.out.println("5:\tExit");
+        System.out.println();
     }
 }

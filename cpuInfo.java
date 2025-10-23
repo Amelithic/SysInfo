@@ -47,4 +47,11 @@ public class cpuInfo {
 
 
     //custom methods here
+    public void testDisplayCPU() {
+        System.out.println("CPU model: "+getModel()); //prints model of CPU
+        System.out.println("Number of CPUs: "+socketCount());
+        System.out.println("Cores: "+coresPerSocket()); //prints model of CPU
+
+        System.out.println(getSystemTime(0)); //get time running system programs for core 0
+    }
 }
