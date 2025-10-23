@@ -18,4 +18,13 @@ public class diskInfo {
 
 
     //custom methods here
+    public void testPrint() {
+        read();
+        System.out.println(diskCount());
+
+        for (int i=0; i < diskCount(); i++) {
+            System.out.println(getName(i));
+            System.out.println(getTotal(i));
+        }
+    }
 }

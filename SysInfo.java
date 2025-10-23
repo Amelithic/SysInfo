@@ -4,11 +4,11 @@ public class SysInfo {
 
     static void mainMenu() {
         System.out.println("SysInfo\n==================\nSelect an option below by entering its number:");
-        System.out.println("0:\tCPU");
-        System.out.println("1:\tMemory");
-        System.out.println("2:\tDisk");
-        System.out.println("3:\tAttached Devices");
-        System.out.println("4:\tExit");
+        System.out.println("1:\tCPU");
+        System.out.println("2:\tMemory");
+        System.out.println("3:\tDisk");
+        System.out.println("4:\tAttached Devices");
+        System.out.println("5:\tExit");
         System.out.println();
     }
 
@@ -24,7 +24,7 @@ public class SysInfo {
 
         while (activeChoice) {
             switch (selection) {
-                case 0:
+                case 1:
                     System.out.println("CPU");
                     System.out.println();//newline
 
@@ -35,7 +35,7 @@ public class SysInfo {
                     selection = input.nextInt();
                     break;
 
-                case 1:
+                case 2:
                     System.out.println("Memory");
                     memInfo ramInfoInstance = new memInfo();
                     ramInfoInstance.printString("this is a test");
@@ -45,18 +45,18 @@ public class SysInfo {
                     selection = input.nextInt();
                     break;
 
-                case 2:
+                case 3:
                     System.out.println("Disk");
                     System.out.println();//newline
 
                     diskInfo testDisk = new diskInfo();
-                    testDisk.read();
+                    testDisk.testPrint();
 
                     mainMenu();
                     selection = input.nextInt();
                     break;
 
-                case 3:
+                case 4:
                     System.out.println("Attached Devices");
                     System.out.println();//newline
 
@@ -71,7 +71,7 @@ public class SysInfo {
 
                     
 
-                case 4:
+                case 5:
                     System.out.println("Exiting program...");
                     activeChoice = false;
                     break;
