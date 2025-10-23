@@ -3,5 +3,6 @@
 /workspace.xml
 *.xml
 *.iml
+*.class
 # Environment-dependent path to Maven home directory
 /mavenHomeManager.xml
