@@ -14,12 +14,14 @@ public class SysInfo {
         while (activeChoice) {
             switch (selection) {
                 case 1:
+                    Style.resetScreen();
                     System.out.println("CPU");
                     System.out.println();//newline
 
                     cpuInfo testCPU = new cpuInfo();
                     testCPU.testDisplayCPU();
 
+                    Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
                     break;
@@ -31,23 +33,25 @@ public class SysInfo {
                     ramInfoInstance.printString("this is a test");
 
                     Style.waitBuffer();
-                    Style.resetScreen();
                     mainMenu();
                     selection = input.nextInt();
                     break;
 
                 case 3:
+                    Style.resetScreen();
                     System.out.println("Disk");
                     System.out.println();//newline
 
                     diskInfo testDisk = new diskInfo();
                     testDisk.testPrint();
 
+                    Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
                     break;
 
                 case 4:
+                    Style.resetScreen();
                     System.out.println("Attached Devices");
                     System.out.println();//newline
 
@@ -56,6 +60,7 @@ public class SysInfo {
                     usbInfo testUsb = new usbInfo();
                     testUsb.read();
 
+                    Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
                     break;
@@ -68,7 +73,9 @@ public class SysInfo {
                     break;
 
                 default:
-                    System.out.println("Invalid number, please try again.\n");
+                    Style.resetScreen();
+                    System.out.println("Invalid number, please try again.\nPress ENTER to continue\n");
+                    Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
             } //end switch
@@ -77,6 +84,7 @@ public class SysInfo {
     }
 
     static void mainMenu() {
+        Style.resetScreen();
         System.out.println(Style.BOLD+Style.RED_FG+"SysInfo\n==================\nSelect an option below by entering its number:"+Style.RESET_CODE);
         System.out.println("1:\tCPU");
         System.out.println("2:\tMemory");

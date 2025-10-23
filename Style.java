@@ -26,7 +26,8 @@ public class Style {
 
 
     public static void resetScreen() {
-        System.out.println("\033[2J");
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
     }
 
     public static void waitBuffer() {
