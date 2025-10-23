@@ -28,16 +28,17 @@ public class SysInfo {
                     System.out.println("CPU");
                     System.out.println();//newline
 
+                    cpuInfo testCPU = new cpuInfo();
+                    testCPU.read();
+
                     mainMenu();
                     selection = input.nextInt();
                     break;
 
                 case 1:
                     System.out.println("Memory");
-                    RamInfo ramInfoInstance = new RamInfo();
+                    memInfo ramInfoInstance = new memInfo();
                     ramInfoInstance.printString("this is a test");
-                    ramInfoInstance.getTotal();
-
 
                     System.out.println();//newline
                     mainMenu();
@@ -48,6 +49,9 @@ public class SysInfo {
                     System.out.println("Disk");
                     System.out.println();//newline
 
+                    diskInfo testDisk = new diskInfo();
+                    testDisk.read();
+
                     mainMenu();
                     selection = input.nextInt();
                     break;
@@ -55,6 +59,11 @@ public class SysInfo {
                 case 3:
                     System.out.println("Attached Devices");
                     System.out.println();//newline
+
+                    pciInfo testPCI = new pciInfo();
+                    testPCI.read();
+                    usbInfo testUsb = new usbInfo();
+                    testUsb.read();
 
                     mainMenu();
                     selection = input.nextInt();
@@ -72,7 +81,7 @@ public class SysInfo {
                     mainMenu();
                     selection = input.nextInt();
             } //end switch
-        }//end while
+        }//end while - main menu
 
     }
 }
