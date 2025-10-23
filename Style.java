@@ -17,20 +17,23 @@ import java.util.Scanner;
 
 public class Style {
     //ANSI escape codes for adding 
-    public static String RESET_CODE = "\033[0m";
+    public static String RESET = "\033[0m";
     public static String BOLD = "\033[1m";
     public static String RED_FG = "\033[31m";
     public static String GREEN_FG = "\033[32m";
     public static String YELLOW_FG = "\033[33m";
     public static String BLUE_FG = "\033[34m";
+    public static String DIMMED = "\033[2;3m";
 
 
     public static void resetScreen() {
-        System.out.println("\033[H\033[2J");
+        System.out.println("\033[H\033[2J"); //moves cursor to home, clears screen
         System.out.flush();
     }
 
     public static void waitBuffer() {
+        System.out.println(DIMMED+"\n\nPress ENTER to continue...\n"+RESET);
+
         Scanner input = new Scanner(System.in);
         input.nextLine();
     }

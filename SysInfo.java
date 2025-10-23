@@ -85,7 +85,7 @@ public class SysInfo {
 
     static void mainMenu() {
         Style.resetScreen();
-        System.out.println(Style.BOLD+Style.RED_FG+"SysInfo\n==================\nSelect an option below by entering its number:"+Style.RESET_CODE);
+        System.out.println(Style.BOLD+Style.RED_FG+"SysInfo\n==================\nSelect an option below by entering its number:"+Style.RESET);
         System.out.println("1:\tCPU");
         System.out.println("2:\tMemory");
         System.out.println("3:\tDisk");
