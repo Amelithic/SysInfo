@@ -24,6 +24,21 @@ public class diskInfo {
             System.out.print("\u2591");
         System.out.println();
     }
+
+    public void print_unit(long kilobytes){
+        if (kilobytes < 1024) {
+            System.out.printf("%d KB", kilobytes);
+        } 
+        else if (kilobytes < 1048576) {
+            System.out.printf("%.2f MB", kilobytes / 1024.0);
+        } 
+        else if (kilobytes < 1073741824) {
+            System.out.printf("%.2f GB", kilobytes / 1048576.0);
+        } 
+        else {
+            System.out.printf("%.2f TB", kilobytes / 1073741824.0);
+        }
+    }
     //custom methods here
     public void testPrint() {
         read();
@@ -33,8 +48,12 @@ public class diskInfo {
             long total = getTotal(i);
             long used = getUsed(i);
             System.out.printf("Name: %s\n", getName(i));
-            System.out.printf("Size: %d\n", total);
-            System.out.printf("Used: %d\n", used);
+            System.out.print("Size: ");
+            print_unit(total);
+            System.out.println();
+            System.out.printf("Used: ");
+            print_unit(used);
+            System.out.println();
             double percentage = (double)used/total;
             make_bar(percentage, 50);
         }
