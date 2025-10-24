@@ -17,7 +17,24 @@ public class memInfo {
     public void printString(String x) {
         System.out.println("test: "+x);
         read();
-        System.out.println("Total RAM: "+getTotal());
-        System.out.println("Used RAM: "+getUsed());
+        float totalRAM = (float) getTotal();
+        float usedRAM = (float) getUsed();
+
+        System.out.println("Total RAM: "+totalRAM);
+        System.out.println("Used RAM: "+usedRAM);
+
+        float percentUsed = Math.round((usedRAM/totalRAM) * 100);
+        System.out.println("\nPercent used: "+percentUsed+"%\n");
+
+        printBarGraph(totalRAM, usedRAM, usedRAM-300);
+    }
+
+    public void printBarGraph(float total, float... values) {
+        //input is total (e.g. 4GB RAM), values are sections of total in use
+
+        for (float x : values) {
+            System.out.println(x);
+        }
+
     }
 }

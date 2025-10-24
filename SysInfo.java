@@ -74,7 +74,7 @@ public class SysInfo {
 
                 default:
                     Style.resetScreen();
-                    System.out.println("Invalid number, please try again.\nPress ENTER to continue\n");
+                    System.out.println("Invalid number, please try again.\n");
                     Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
@@ -85,7 +85,13 @@ public class SysInfo {
 
     static void mainMenu() {
         Style.resetScreen();
-        System.out.println(Style.BOLD+Style.RED_FG+"SysInfo\n==================\nSelect an option below by entering its number:"+Style.RESET);
+        System.out.println(Style.BOLD+Style.RED_FG+"  _________              .___        _____       \n" + //
+                        " /   _____/__.__. ______ |   | _____/ ____\\____  \n" + //
+                        " \\_____  <   |  |/  ___/ |   |/    \\   __\\/  _ \\ \n" + //
+                        " /        \\___  |\\___ \\  |   |   |  \\  | (  <_> )\n" + //
+                        "/_______  / ____/____  > |___|___|  /__|  \\____/ \n" + //
+                        "        \\/\\/         \\/           \\/             "+Style.RESET); //Ascii text - "Sys Info"
+        System.out.println(Style.BOLD+"\nSelect an option below by entering its number:"+Style.RESET);
         System.out.println("1:\tCPU");
         System.out.println("2:\tMemory");
         System.out.println("3:\tDisk");
