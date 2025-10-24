@@ -16,15 +16,27 @@ public class diskInfo {
     public native long getUsed (int disk);
     public native long getAvailable (int disk);
 
-
+    public void make_bar(double percentage, int size){
+        int progress = (int)Math.floor(percentage*size);
+        for(int i = 0; i<progress; i++)
+            System.out.print("\u2593");
+        for(int j = 0; j<size-progress; j++)
+            System.out.print("\u2591");
+        System.out.println();
+    }
     //custom methods here
     public void testPrint() {
         read();
         System.out.println(diskCount());
 
         for (int i=0; i < diskCount(); i++) {
-            System.out.println(getName(i));
-            System.out.println(getTotal(i));
+            long total = getTotal(i);
+            long used = getUsed(i);
+            System.out.printf("Name: %s\n", getName(i));
+            System.out.printf("Size: %d\n", total);
+            System.out.printf("Used: %d\n", used);
+            double percentage = (double)used/total;
+            make_bar(percentage, 50);
         }
     }
 }
