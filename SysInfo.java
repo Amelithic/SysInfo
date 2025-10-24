@@ -60,6 +60,23 @@ public class SysInfo {
                     usbInfo testUsb = new usbInfo();
                     testUsb.read();
 
+                    //testing
+                    System.out.println("Busses: " + testPCI.busCount());
+                    System.out.println("Devices: " + testPCI.deviceCount(0));
+                    System.out.println("Functions: " + testPCI.functionCount(0,0));
+                    System.out.println("VID: " + testPCI.vendorID(0,0,0));
+                    System.out.println("VID: " + testPCI.vendorID(0,0,1));
+                    System.out.println("VID: " + testPCI.vendorID(0,0,2));
+                    System.out.println("VID: " + testPCI.vendorID(0,0,3));
+                    System.out.println("PID: " + testPCI.productID(0,0,0));
+                    System.out.println("PID: " + testPCI.productID(0,0,1));
+                    System.out.println("PID: " + testPCI.productID(0,0,2));
+                    System.out.println("PID: " + testPCI.productID(0,0,3));
+                    System.out.println();
+
+                    pciArrays pci = new pciArrays();
+                    pci.printStructure();
+
                     Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
