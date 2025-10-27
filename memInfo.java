@@ -21,15 +21,15 @@ public class memInfo {
         float usedRAM = (float) getUsed();
 
         System.out.println("\nTotal RAM: ");
-        System.out.print("\t"+Style.BOLD);
+        System.out.print("    "+Style.BOLD);
         diskInfo.print_unit((long)totalRAM);
         System.out.println(Style.RESET+"\nUsed RAM: ");
-        System.out.print("\t"+Style.BOLD);
+        System.out.print("    "+Style.BOLD);
         diskInfo.print_unit((long)usedRAM);
 
         float percentUsed = (usedRAM/totalRAM) * 100;
-        System.out.println(Style.RESET+"\n\nPercent used: ");
-        System.out.printf(Style.BOLD+"\t%.2f",percentUsed);
+        System.out.println(Style.RESET+"\n\n\nPercent used: ");
+        System.out.printf(Style.BOLD+"    %.2f",percentUsed);
         System.out.print(Style.RESET+"%\n");
 
         displayMemGraph(percentUsed);

@@ -125,7 +125,6 @@ public class SysInfo {
                     selection = input.nextInt();
             } //end switch
         }//end while - main menu
-
     }
 
     static void mainMenu() {
