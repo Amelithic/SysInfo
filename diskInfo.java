@@ -25,7 +25,7 @@ public class diskInfo {
         System.out.println();
     }
 
-    public void print_unit(long kilobytes){
+    public static void print_unit(long kilobytes){
         if (kilobytes < 1024) {
             System.out.printf("%d KB", kilobytes);
         } 

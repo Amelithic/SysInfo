@@ -29,11 +29,38 @@ public class SysInfo {
 
                 case 2:
                     Style.resetScreen();
-                    System.out.println("Memory");
+                    boolean isLiveDisplay = true;
                     memInfo ramInfoInstance = new memInfo();
-                    ramInfoInstance.printString("this is a test");
+
+                    try {
+                        while (isLiveDisplay) {
+                            Thread.sleep(500); //waits 0.5 seconds before refreshing
+                            Style.resetScreen();
+                            ramInfoInstance.read(); //why does it have to print to console ;-;
+
+                            Style.resetScreen();
+                            System.out.println(Style.RED_FG+Style.BOLD+"Memory"+Style.RESET);
+
+                            ramInfoInstance.displayMemory();
+                            System.out.println(Style.DIMMED+"\n\nPress ENTER to continue...\n"+Style.RESET);
+
+                            if (System.in.available() > 0) {
+                                //if input available - non-blocking method
+                                if (input.hasNextLine()) {
+                                    //exit if ENTER key pressed
+                                    isLiveDisplay = false;
+                                }
+                            }
+
+                        }   
+                    } catch (Exception e) {
+                        System.out.println("Error displaying memory info.");
+                        System.out.println(e.getMessage());
+                    }
+                    System.out.println();//newline
 
                     Style.waitBuffer();
+
                     mainMenu();
                     selection = input.nextInt();
                     break;

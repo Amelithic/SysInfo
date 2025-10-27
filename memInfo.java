@@ -1,5 +1,7 @@
 //Memory information - Amelie
 
+import java.util.Random;
+
 public class memInfo {
     static {
         // Loading Mark's Library
@@ -14,27 +16,42 @@ public class memInfo {
 
 
     //custom methods here    
-    public void printString(String x) {
-        System.out.println("test: "+x);
-        read();
+    public void displayMemory() {
         float totalRAM = (float) getTotal();
         float usedRAM = (float) getUsed();
 
-        System.out.println("Total RAM: "+totalRAM);
-        System.out.println("Used RAM: "+usedRAM);
+        System.out.println("\nTotal RAM: ");
+        System.out.print("\t"+Style.BOLD);
+        diskInfo.print_unit((long)totalRAM);
+        System.out.println(Style.RESET+"\nUsed RAM: ");
+        System.out.print("\t"+Style.BOLD);
+        diskInfo.print_unit((long)usedRAM);
 
-        float percentUsed = Math.round((usedRAM/totalRAM) * 100);
-        System.out.println("\nPercent used: "+percentUsed+"%\n");
+        float percentUsed = (usedRAM/totalRAM) * 100;
+        System.out.println(Style.RESET+"\n\nPercent used: ");
+        System.out.printf(Style.BOLD+"\t%.2f",percentUsed);
+        System.out.print(Style.RESET+"%\n");
 
-        printBarGraph(totalRAM, usedRAM, usedRAM-300);
+        displayMemGraph(percentUsed);
     }
 
-    public void printBarGraph(float total, float... values) {
-        //input is total (e.g. 4GB RAM), values are sections of total in use
+    public void displayMemGraph(float percentUsed) {
 
-        for (float x : values) {
-            System.out.println(x);
+        System.out.print(Style.RED_FG+"┌────────────────────┐"+Style.RESET);
+        System.out.print(Style.RED_FG+"\n│"+Style.RESET);
+
+        // 1 bar = 5 percent used
+        int pointsInPercentage = (int) Math.floor(percentUsed) / 5;
+        for (int i=0; i < pointsInPercentage; i++) {
+            System.out.print("▉");
         }
+        int remainder = 20 - pointsInPercentage;
+        for (int i=0; i < remainder; i++) {
+            System.out.print(Style.DIMMED+"░"+Style.RESET);
+        }
+
+        System.out.print(Style.RED_FG+"│\n"+Style.RESET);
+        System.out.println(Style.RED_FG+"└────────────────────┘"+Style.RESET);
 
     }
 }
