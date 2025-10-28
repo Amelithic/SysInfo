@@ -52,15 +52,6 @@ public class memInfo {
         System.out.print(Style.RED+"│\n"+Style.RESET);
         System.out.println(Style.RED+"└────────────────────┘"+Style.RESET);
     }
+    
+}//end class memInfo
 
-    public float percentUsed() {
-        float totalRAM = (float) getTotal();
-        float usedRAM = (float) getUsed();
-
-        return (usedRAM/totalRAM) * 100;
-    }
-
-    //public void displayMemUsageGraph(Float[] percentages) {
-
-    //}
-}
