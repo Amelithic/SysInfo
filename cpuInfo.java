@@ -6,9 +6,13 @@ public class cpuInfo {
         // Loading Mark's Library
         System.loadLibrary("sysinfo"); //libsysinfo.so
     }
+    
+    
+    
+
 
     //defining native methods
-    // Refresh the current values and counters - call this before other methodsi
+    // Refresh the current values and counters - call this before other methods
     public native void read (int seconds);
     public native void read ();
 
@@ -48,7 +52,6 @@ public class cpuInfo {
 
     //custom methods here
     public void testDisplayCPU() {
-      
         boolean x = true;
         while (x) {
             Scanner scanner = new Scanner(System.in);
@@ -66,96 +69,26 @@ public class cpuInfo {
             System.out.println(Style.GREEN + "5." + Style.RESET + " Exit");
             int menuChoice = scanner.nextInt();
             read();
+            
+        
             switch(menuChoice) {
 
                 case 1:
-                    Style.resetScreen();
-                    System.out.println(Style.PURPLE + "CPU model: " + Style.RESET + getModel());
-                    switch (coresPerSocket()) {
-                        case 1:
-                            System.out.println(Style.BLUE + "Single Core CPU" +Style.RESET);
-                            break;
-                        case 2:
-                            System.out.println(Style.BLUE + "Dual Core CPU" + Style.RESET);
-                            break;
-                        case 4:
-                            System.out.println(Style.BLUE + "Quad Core CPU" + Style.RESET);
-                            break;
-                        case 6:
-                            System.out.println(Style.BLUE+ "Hexa Core CPU" + Style.RESET);
-                            break;
-                        case 8:
-                            System.out.println(Style.BLUE + "Octa Core CPU" +Style.RESET);
-                            break;
-                        default:
-                            System.out.println(Style.BLUE + coresPerSocket() + " Cores CPU" + Style.RESET);
-                            break;
-                    }
+                    CoreType();
                     break;
 
                 case 2:
-                    Style.resetScreen();
-                    System.out.println(Style.YELLOW + "L1 Data Cache Size: " + Style.RESET + l1dCacheSize() + " bytes");
-                    System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize());
-                    System.out.println(Style.YELLOW + "L1 Total Cache Size: " + Style.RESET + (l1dCacheSize()+l1iCacheSize()) + " bytes");
-                    System.out.println(Style.YELLOW + "L2 Cache Size: " + Style.RESET + l2CacheSize() + " bytes");
-                    System.out.println(Style.YELLOW + "L3 Cache Size: " + Style.RESET + l3CacheSize() + " bytes"); 
-                    System.out.println(Style.YELLOW + "Total cache size: " + Style.RESET + 
-                        (l1dCacheSize()+l1iCacheSize()+l2CacheSize()+l3CacheSize()) + " bytes"); 
+                    CacheSizes();
                     break;
 
                 case 3:
-                    Style.resetScreen();
-                    read(1); //refresh values over 1 second
-                    for (int i = 0; i < coresPerSocket(); i++) {
-                        System.out.println(Style.BLUE + "Core " + i + ":" + Style.RESET);
-                        System.out.println("User Time: " + Style.GREEN + getUserTime(i) + " jiffies" + Style.RESET);
-                        System.out.println("Idle Time: " + Style.PURPLE + getIdleTime(i) + " jiffies" + Style.RESET);
-                        System.out.println("System Time: " + Style.RED + getSystemTime(i) + " jiffies" + Style.RESET);
-                    }
+                    CpuPerformance();
                     break;
 
                 case 4:
-                    Style.resetScreen();
-                    System.out.println(Style.PURPLE + "CPU model: " + Style.RESET + getModel());
-                    switch (coresPerSocket()) {
-                        case 1:
-                            System.out.println(Style.BLUE + "Single Core CPU" + Style.RESET);
-                            break;
-                        case 2:
-                            System.out.println(Style.BLUE + "Dual Core CPU" + Style.RESET);
-                            break;
-                        case 4:
-                            System.out.println(Style.BLUE + "Quad Core CPU" + Style.RESET);
-                            break;
-                        case 6:
-                            System.out.println(Style.BLUE + "Hexa Core CPU" + Style.RESET);
-                            break;
-                        case 8:
-                            System.out.println(Style.BLUE + "Octa Core CPU" + Style.RESET);
-                            break;
-                        default:
-                            System.out.println(Style.BLUE + coresPerSocket() + " Cores CPU" + Style.RESET);
-                            break;
-                    }
-                    System.out.println();
-                    System.out.println();
-                    System.out.println(Style.YELLOW + "L1 Data Cache Size: " + Style.RESET + l1dCacheSize() + " bytes");
-                    System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize());
-                    System.out.println(Style.YELLOW + "L1 Total Cache Size: " + Style.RESET + (l1dCacheSize()+l1iCacheSize()) + " bytes");
-                    System.out.println(Style.YELLOW + "L2 Cache Size: " + Style.RESET + l2CacheSize() + " bytes");
-                    System.out.println(Style.YELLOW + "L3 Cache Size: " + Style.RESET + l3CacheSize() + " bytes"); 
-                    System.out.println(Style.YELLOW + "Total cache size: " + Style.RESET + 
-                        (l1dCacheSize()+l1iCacheSize()+l2CacheSize()+l3CacheSize()) + " bytes"); 
-                    System.out.println();
-                    System.out.println();
-                    read(1); //refresh values over 1 second
-                    for (int i = 0; i < coresPerSocket(); i++) {
-                        System.out.println(Style.BLUE + "Core " + i + ":" + Style.RESET);
-                        System.out.println("User Time: " + Style.GREEN + getUserTime(i) + " jiffies" + Style.RESET);
-                        System.out.println("Idle Time: " + Style.PURPLE + getIdleTime(i) + " jiffies" + Style.RESET);
-                        System.out.println("System Time: " + Style.RED + getSystemTime(i) + " jiffies" + Style.RESET);
-                    }
+                    CoreType();
+                    CacheSizes();
+                    CpuPerformance();
                     break;
 
                 case 5:
@@ -170,4 +103,62 @@ public class cpuInfo {
             }
         }
     }
-}
+      
+        
+    public void CpuPerformance(){
+        read(1); //refresh values over 1 second
+        for (int i = 0; i < coresPerSocket(); i++) {
+            System.out.println(Style.CYAN + "Core " + i + ":" + Style.RESET);
+            System.out.println("User Time: " + Style.GREEN + getUserTime(i) + " jiffies" + Style.RESET);
+            System.out.println("Idle Time: " + Style.PURPLE + getIdleTime(i) + " jiffies" + Style.RESET);
+            System.out.println("System Time: " + Style.RED + getSystemTime(i) + " jiffies" + Style.RESET);
+        }
+    }
+
+
+    public void CacheSizes(){
+        Style.resetScreen();
+        System.out.println(Style.YELLOW + "L1 Data Cache Size: " + Style.RESET + l1dCacheSize() + " bytes");
+        System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize());
+        System.out.println(Style.YELLOW + "L1 Total Cache Size: " + Style.RESET + (l1dCacheSize()+l1iCacheSize()) + " bytes");
+        System.out.println(Style.YELLOW + "L2 Cache Size: " + Style.RESET + l2CacheSize() + " bytes");
+        System.out.println(Style.YELLOW + "L3 Cache Size: " + Style.RESET + l3CacheSize() + " bytes"); 
+        System.out.println(Style.YELLOW + "Total cache size: " + Style.RESET + 
+         (l1dCacheSize()+l1iCacheSize()+l2CacheSize()+l3CacheSize()) + " bytes"); 
+    }
+   
+   
+    public void CoreType(){
+                
+                    Style.resetScreen();
+                    System.out.println(Style.PURPLE + "CPU model: " + Style.RESET + getModel());
+                    switch (coresPerSocket()) {
+                        case 1:
+                            System.out.println(Style.CYAN + "Single Core CPU" +Style.RESET);
+                            break;
+                        case 2:
+                            System.out.println(Style.CYAN + "Dual Core CPU" + Style.RESET);
+                            break;
+                        case 4:
+                            System.out.println(Style.CYAN + "Quad Core CPU" + Style.RESET);
+                            break;
+                        case 6:
+                            System.out.println(Style.CYAN+ "Hexa Core CPU" + Style.RESET);
+                            break;
+                        case 8:
+                            System.out.println(Style.CYAN + "Octa Core CPU" +Style.RESET);
+                            break;
+                        default:
+                            System.out.println(Style.CYAN + coresPerSocket() + " Cores CPU" + Style.RESET);
+                            break;
+                        }
+    } 
+
+}  
+    
+
+
+
+          
+
+
