@@ -30,7 +30,6 @@ public class SysInfo {
                     Style.resetScreen();
                     boolean isLiveDisplay = true;
                     memInfo ramInfoInstance = new memInfo();
-                    ArrayList<Float> ramPercentUsages = new ArrayList<>(); //stores history of percentages
 
                     try {
                         
@@ -43,9 +42,6 @@ public class SysInfo {
                             System.out.println(Style.RED+Style.BOLD+"Memory"+Style.RESET);
 
                             ramInfoInstance.displayMemory();
-                            float currentPercentUsed = ramInfoInstance.percentUsed();
-                            ramPercentUsages.add(0, currentPercentUsed); //adds newest reading first
-                            //ramInfoInstance.displayMemUsageGraph(ramPercentUsages);
 
                             System.out.println(Style.DIMMED+"\n\nPress ENTER to continue...\n"+Style.RESET);
 
