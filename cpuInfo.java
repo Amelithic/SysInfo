@@ -154,13 +154,74 @@ public class cpuInfo {
                             System.out.println(Style.CYAN + coresPerSocket() + " Cores CPU" + Style.RESET);
                             break;
                         }
-    } 
+    }
+    
+    public void calculateLoad(){
+         int cores = coresPerSocket();
+    
+    // STEP 1: Query the initial busy and idle values at time T=0
+    int[] busyAtStart = new int[cores];
+    int[] idleAtStart = new int[cores];
+    
+    for (int i = 0; i < cores; i++) {
+        busyAtStart[i] = getUserTime(i) + getSystemTime(i);  // busy = user + system
+        idleAtStart[i] = getIdleTime(i);
+    }
+    
+    // STEP 2: Wait for a certain interval (1 second)
+    try {
+        Thread.sleep(1000);
+    } catch (Exception e) {
+        System.out.println("Error");
+    }
+    
+    // STEP 3: Query the busy and idle values again at time T=1
+    int[] busyAtEnd = new int[cores];
+    int[] idleAtEnd = new int[cores];
+    
+    for (int i = 0; i < cores; i++) {
+        busyAtEnd[i] = getUserTime(i) + getSystemTime(i);
+        idleAtEnd[i] = getIdleTime(i);
+    }
+    
+    // STEP 4: Calculate the difference to get cycles consumed in the interval
+    double totalLoad = 0;
+    
+    for (int i = 0; i < cores; i++) {
+        int busyCycles = busyAtEnd[i] - busyAtStart[i];  // cycles consumed doing work
+        int idleCycles = idleAtEnd[i] - idleAtStart[i];  // cycles spent idle
+        
+        // STEP 5: Calculate the ratio of busy cycles to total cycles
+        int totalCycles = busyCycles + idleCycles;
+        double coreLoad = 0;
+        
+        if (totalCycles > 0) {
+            coreLoad = ((double) busyCycles / totalCycles) * 100;  // CPU load percentage
+        }
+        
+        System.out.println("Core " + i + " load: " + coreLoad + "%");
+        
+        // STEP 6: Add this core's load to calculate average later
+        totalLoad += coreLoad;
+    }
+    
+    // STEP 7: Average the load across all cores for overall system load
+    double overallSystemLoad = totalLoad / cores;
+    
+    System.out.println("Overall System Load: " + overallSystemLoad + "%");
 
-}  
+    }
+    
+}
+    
+   
+
+
+
+  
     
 
 
 
           
-
 
