@@ -74,10 +74,12 @@ public class cpuInfo {
             switch(menuChoice) {
 
                 case 1:
+                    Style.resetScreen();
                     CoreType();
                     break;
 
                 case 2:
+                    Style.resetScreen();
                     CacheSizes();
                     break;
 
@@ -117,7 +119,7 @@ public class cpuInfo {
 
 
     public void CacheSizes(){
-        Style.resetScreen();
+        
         System.out.println(Style.YELLOW + "L1 Data Cache Size: " + Style.RESET + l1dCacheSize() + " bytes");
         System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize());
         System.out.println(Style.YELLOW + "L1 Total Cache Size: " + Style.RESET + (l1dCacheSize()+l1iCacheSize()) + " bytes");
@@ -130,7 +132,7 @@ public class cpuInfo {
    
     public void CoreType(){
                 
-                    Style.resetScreen();
+                    
                     System.out.println(Style.PURPLE + "CPU model: " + Style.RESET + getModel());
                     switch (coresPerSocket()) {
                         case 1:
