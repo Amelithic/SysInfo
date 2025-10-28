@@ -17,13 +17,15 @@ import java.util.Scanner;
 
 public class Style {
     //ANSI escape codes for adding 
-    public static String RESET = "\033[0m";
-    public static String BOLD = "\033[1m";
-    public static String RED_FG = "\033[31m";
-    public static String GREEN_FG = "\033[32m";
-    public static String YELLOW_FG = "\033[33m";
-    public static String BLUE_FG = "\033[34m";
-    public static String DIMMED = "\033[2;3m";
+    public static final String RESET = "\033[0m";
+    public static final String BOLD = "\033[1m";
+    public static final String RED = "\033[31m";
+    public static final String GREEN = "\033[32m";
+    public static final String YELLOW = "\033[33m";
+    public static final String BLUE = "\033[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String DIMMED = "\033[2;3m";
 
 
     public static void resetScreen() {

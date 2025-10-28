@@ -37,8 +37,8 @@ public class memInfo {
 
     public static void displayGraph(float percentUsed) {
 
-        System.out.print(Style.RED_FG+"┌────────────────────┐"+Style.RESET);
-        System.out.print(Style.RED_FG+"\n│"+Style.RESET);
+        System.out.print(Style.RED+"┌────────────────────┐"+Style.RESET);
+        System.out.print(Style.RED+"\n│"+Style.RESET);
 
         // 1 bar = 5 percent used
         int pointsInPercentage = (int) Math.floor(percentUsed) / 5;
@@ -50,8 +50,8 @@ public class memInfo {
             System.out.print(Style.DIMMED+"░"+Style.RESET);
         }
 
-        System.out.print(Style.RED_FG+"│\n"+Style.RESET);
-        System.out.println(Style.RED_FG+"└────────────────────┘"+Style.RESET);
+        System.out.print(Style.RED+"│\n"+Style.RESET);
+        System.out.println(Style.RED+"└────────────────────┘"+Style.RESET);
 
     }
 }

@@ -39,7 +39,7 @@ public class SysInfo {
                             ramInfoInstance.read(); //why does it have to print to console ;-;
 
                             Style.resetScreen();
-                            System.out.println(Style.RED_FG+Style.BOLD+"Memory"+Style.RESET);
+                            System.out.println(Style.RED+Style.BOLD+"Memory"+Style.RESET);
 
                             ramInfoInstance.displayMemory();
                             System.out.println(Style.DIMMED+"\n\nPress ENTER to continue...\n"+Style.RESET);
@@ -129,7 +129,7 @@ public class SysInfo {
 
     static void mainMenu() {
         Style.resetScreen();
-        System.out.println(Style.BOLD+Style.RED_FG+"  _________              .___        _____       \n" + //
+        System.out.println(Style.BOLD+Style.RED+"  _________              .___        _____       \n" + //
                         " /   _____/__.__. ______ |   | _____/ ____\\____  \n" + //
                         " \\_____  <   |  |/  ___/ |   |/    \\   __\\/  _ \\ \n" + //
                         " /        \\___  |\\___ \\  |   |   |  \\  | (  <_> )\n" + //
