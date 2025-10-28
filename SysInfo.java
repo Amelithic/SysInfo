@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.Math;
 
 public class SysInfo {
 
@@ -110,8 +109,6 @@ public class SysInfo {
                     selection = input.nextInt();
                     break;
 
-                    
-
                 case 5:
                     System.out.println("Exiting program...");
                     activeChoice = false;
@@ -125,7 +122,7 @@ public class SysInfo {
                     selection = input.nextInt();
             } //end switch
         }//end while - main menu
-    }
+    } //end main
 
     static void mainMenu() {
         Style.resetScreen();

@@ -26,6 +26,7 @@ public class Style {
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
     public static final String DIMMED = "\033[2;3m";
+    public static final String SHORT_TAB = "    ";
 
 
     public static void resetScreen() {
