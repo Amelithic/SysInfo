@@ -92,6 +92,9 @@ public class SysInfo {
                     pciArrays pci = new pciArrays();
                     pci.printStructure();
 
+                    System.out.println("Buses: " + testUsb.busCount());
+                    System.out.println("Devices: " + testUsb.deviceCount(0));
+
                     usbArrays usb = new usbArrays();
                     usb.printUSBStructure();
 

@@ -58,11 +58,9 @@ class usbArrays {
 
                     int deviceCount = usbinfo.deviceCount (b);
                     for (int d = 0; d < deviceCount; d++) {
-                        if (usbinfo.deviceCount(b) == 1) {
-                            int vendor = usbinfo.vendorID (b, d);
-                            int product = usbinfo.productID (b, d);
-                            bus.busesAr.add(new DevicesUSB (vendor, product));
-                        }
+                        int vendor = usbinfo.vendorID (b, d);
+                        int product = usbinfo.productID (b, d);
+                        bus.busesAr.add(new DevicesUSB (vendor, product));
                     }
 
                     //Only add if bus has at least one valid device
