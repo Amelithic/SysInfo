@@ -1,7 +1,5 @@
 //Memory information - Amelie
 
-import java.util.Random;
-
 public class memInfo {
     static {
         // Loading Mark's Library
