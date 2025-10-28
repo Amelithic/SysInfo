@@ -19,10 +19,11 @@ public class memInfo {
         float usedRAM = (float) getUsed();
 
         System.out.println("\nTotal RAM: ");
-        System.out.print("    "+Style.BOLD);
+        System.out.print(Style.SHORT_TAB+Style.BOLD);
         diskInfo.print_unit((long)totalRAM);
+        
         System.out.println(Style.RESET+"\nUsed RAM: ");
-        System.out.print("    "+Style.BOLD);
+        System.out.print(Style.SHORT_TAB+Style.BOLD);
         diskInfo.print_unit((long)usedRAM);
 
         float percentUsed = (usedRAM/totalRAM) * 100;
