@@ -32,10 +32,10 @@ public class memInfo {
         System.out.printf(Style.BOLD+"    %.2f",percentUsed);
         System.out.print(Style.RESET+"%\n");
 
-        displayMemGraph(percentUsed);
+        displayGraph(percentUsed);
     }
 
-    public void displayMemGraph(float percentUsed) {
+    public static void displayGraph(float percentUsed) {
 
         System.out.print(Style.RED_FG+"┌────────────────────┐"+Style.RESET);
         System.out.print(Style.RED_FG+"\n│"+Style.RESET);
