@@ -34,7 +34,7 @@ public class pciInfo {
 
     //custom methods here
 }
-//ChatGPT generated (sorry :( )
+
 //PCI function
 class Functions {
     int vendorID;
