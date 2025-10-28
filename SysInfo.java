@@ -71,7 +71,7 @@ public class SysInfo {
                     System.out.println();//newline
 
                     diskInfo testDisk = new diskInfo();
-                    testDisk.testPrint();
+                    testDisk.print_table();
 
                     Style.waitBuffer();
                     mainMenu();

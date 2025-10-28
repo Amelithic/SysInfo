@@ -25,29 +25,31 @@ public class diskInfo {
         System.out.println();
     }
 
-    public static void print_unit(long kilobytes){
+    public static String print_unit(long kilobytes){
         if (kilobytes < 1024) {
-            System.out.printf("%d KB", kilobytes);
+            return String.format("%d KiB", kilobytes);
         } 
         else if (kilobytes < 1048576) {
-            System.out.printf("%.2f MB", kilobytes / 1024.0);
+            return String.format("%.2f MiB", kilobytes / 1024.0);
         } 
         else if (kilobytes < 1073741824) {
-            System.out.printf("%.2f GB", kilobytes / 1048576.0);
+            return String.format("%.2f GiB", kilobytes / 1048576.0);
         } 
         else {
-            System.out.printf("%.2f TB", kilobytes / 1073741824.0);
+            return String.format("%.2f TiB", kilobytes / 1073741824.0);
         }
     }
     //custom methods here
-    public void testPrint() {
+    public void print_table() {
         read();
-        System.out.println(diskCount());
-
+        System.out.println(Style.BOLD + Style.CYAN + "Number of disks: " + diskCount() + "\n" + Style.RESET );
+        System.out.println(Style.BLUE + "_____________________________________________________" + Style.RESET);
+        System.out.printf(Style.BLUE + "| %-15s | %-8s | %-20s |\n" + Style.RESET, "Name", "Size", "Bar");
         for (int i=0; i < diskCount(); i++) {
             long total = getTotal(i);
             long used = getUsed(i);
-            System.out.printf("Name: %s\n", getName(i));
+
+            System.out.printf("", getName(i));
             System.out.print("Size: ");
             print_unit(total);
             System.out.println();
