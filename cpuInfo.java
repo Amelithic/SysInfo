@@ -8,7 +8,7 @@ public class cpuInfo {
     }
 
     //defining native methods
-    // Refresh the current values and counters - call this before other methods
+    // Refresh the current values and counters - call this before other methodsi
     public native void read (int seconds);
     public native void read ();
 

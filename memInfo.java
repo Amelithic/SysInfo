@@ -21,7 +21,7 @@ public class memInfo {
         System.out.println("\nTotal RAM: ");
         System.out.print(Style.SHORT_TAB+Style.BOLD);
         diskInfo.print_unit((long)totalRAM);
-        
+
         System.out.println(Style.RESET+"\nUsed RAM: ");
         System.out.print(Style.SHORT_TAB+Style.BOLD);
         diskInfo.print_unit((long)usedRAM);
@@ -31,10 +31,10 @@ public class memInfo {
         System.out.printf(Style.BOLD+"    %.2f",percentUsed);
         System.out.print(Style.RESET+"%\n");
 
-        displayGraph(percentUsed);
+        displayBarGraph(percentUsed);
     }
 
-    public static void displayGraph(float percentUsed) {
+    public static void displayBarGraph(float percentUsed) {
 
         System.out.print(Style.RED+"┌────────────────────┐"+Style.RESET);
         System.out.print(Style.RED+"\n│"+Style.RESET);
@@ -51,6 +51,16 @@ public class memInfo {
 
         System.out.print(Style.RED+"│\n"+Style.RESET);
         System.out.println(Style.RED+"└────────────────────┘"+Style.RESET);
-
     }
+
+    public float percentUsed() {
+        float totalRAM = (float) getTotal();
+        float usedRAM = (float) getUsed();
+
+        return (usedRAM/totalRAM) * 100;
+    }
+
+    //public void displayMemUsageGraph(Float[] percentages) {
+
+    //}
 }
