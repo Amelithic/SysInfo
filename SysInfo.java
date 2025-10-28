@@ -92,6 +92,9 @@ public class SysInfo {
                     pciArrays pci = new pciArrays();
                     pci.printStructure();
 
+                    usbArrays usb = new usbArrays();
+                    usb.printUSBStructure();
+
                     Style.waitBuffer();
                     mainMenu();
                     selection = input.nextInt();
