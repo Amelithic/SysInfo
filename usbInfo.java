@@ -74,8 +74,11 @@ class usbArrays {
         public void printUSBStructure() {
             System.out.println(Style.BOLD+Style.RED+"\nAttached USB Devices\n"+Style.RESET);
             for (int b = 0; b < usbAr.size(); b++) {
-                System.out.println("USB Bus " + b);
-                BusesUSB bus = usbAr.get(b);
+                if (!usbAr.get(b).busesAr.isEmpty()) {
+                    continue;
+                }
+                    System.out.println("USB Bus " + b);
+                    BusesUSB bus = usbAr.get(b);
 
                 for (int d = 0; d < bus.busesAr.size(); d++) {
                     DevicesUSB device = bus.busesAr.get(d);
