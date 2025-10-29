@@ -108,14 +108,41 @@ class pciArrays {
             Busses bus = pcisAr.get(b);
 
             for (int d = 0; d < bus.bussesAr.size(); d++) {
-                System.out.println("  Device " + d);
+                System.out.println(Style.YELLOW+"  Device " + d+Style.RESET);
                 Devices device = bus.bussesAr.get(d);
 
                 for (int f = 0; f < device.devicesAr.size(); f++) {
                     Functions func = device.devicesAr.get(f);
                     System.out.printf("    Function %d -> Vendor: 0x%04X, Product: 0x%04X%n", f, func.vendorID, func.productID);
+                    vendorIdCheck(func.vendorID);
                 }
+                System.out.println(); //newline
             }
+        }
+    }
+
+    public void vendorIdCheck(int vendorId) {
+        String vendorIdString = String.format("%04X", vendorId).toUpperCase();
+
+        switch (vendorIdString) {
+            case "8086":
+                System.out.println(Style.CYAN+"\tThis is an Intel device."+Style.RESET);
+                break;
+            case "1002", "1022":
+                System.out.println(Style.CYAN+"\tThis is an AMD device."+Style.RESET);
+                break;
+            case "10DE":
+                System.out.println(Style.CYAN+"\tThis is a NVIDIA device."+Style.RESET);
+                break;
+            case "106B":
+                System.out.println(Style.CYAN+"\tThis is an Apple device."+Style.RESET);
+                break;
+            case "13B5":
+                System.out.println(Style.CYAN+"\tThis is an ARM device."+Style.RESET);
+                break;
+            default:
+                System.out.println(Style.CYAN+"\tUnknown device vendor."+Style.RESET);
+                break;
         }
     }
 }

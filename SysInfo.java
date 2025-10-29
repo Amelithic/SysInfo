@@ -88,12 +88,26 @@ public class SysInfo {
                     testPCI.read();
                     usbInfo testUsb = new usbInfo();
                     testUsb.read();
+                    
+                    //Corrected USB + PCI total count
+                    int attachedDevicesTotal = 0;
+                    for (int i=0; i < testPCI.busCount(); i++) {
+                        for (int deviceCount=0; deviceCount < testPCI.deviceCount(i); deviceCount++) {
+                            attachedDevicesTotal++;
+                        }
+                    }
+                    for (int i=0; i < testUsb.busCount(); i++) {
+                        for (int deviceCount=0; deviceCount < testUsb.deviceCount(i); deviceCount++) {
+                            attachedDevicesTotal++;
+                        }
+                    }
 
+                    System.out.println(Style.BOLD+"Total PCI and USB devices: "+Style.RESET+attachedDevicesTotal);
+                    System.out.println(); //newline
+
+                    //Display functions
                     pciArrays pci = new pciArrays();
                     pci.printStructure();
-
-                    System.out.println("Buses: " + testUsb.busCount());
-                    System.out.println("Devices: " + testUsb.deviceCount(0));
 
                     usbArrays usb = new usbArrays();
                     usb.printUSBStructure();

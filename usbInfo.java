@@ -72,16 +72,45 @@ class usbArrays {
 
         //Print Structure
         public void printUSBStructure() {
-            System.out.println("\nAttached USB Devices\n");
+            System.out.println(Style.BOLD+Style.RED+"\nAttached USB Devices\n"+Style.RESET);
             for (int b = 0; b < usbAr.size(); b++) {
                 System.out.println("USB Bus " + b);
                 BusesUSB bus = usbAr.get(b);
 
                 for (int d = 0; d < bus.busesAr.size(); d++) {
                     DevicesUSB device = bus.busesAr.get(d);
-                    System.out.printf("   USB Device %d -> Vendor: 0x%04X, Product: 0x%04X%n", d, device.vendorID, device.productID);
+                    System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> Vendor: 0x%04X, Product: 0x%04X%n", d, device.vendorID, device.productID);
+                    vendorIdCheck(device.vendorID);
 
                 }
             }
         }
+
+    public void vendorIdCheck(int vendorId) {
+        String vendorIdString = String.format("%04X", vendorId).toUpperCase();
+
+        switch (vendorIdString) {
+            case "8086", "8087", "042B":
+                System.out.println(Style.CYAN+"\tThis is an Intel device."+Style.RESET);
+                break;
+            case "1002", "1022":
+                System.out.println(Style.CYAN+"\tThis is an AMD device."+Style.RESET);
+                break;
+            case "10DE":
+                System.out.println(Style.CYAN+"\tThis is a NVIDIA device."+Style.RESET);
+                break;
+            case "05AC":
+                System.out.println(Style.CYAN+"\tThis is an Apple device."+Style.RESET);
+                break;
+            case "045E":
+                System.out.println(Style.CYAN+"\tThis is a Microsoft device."+Style.RESET);
+                break;
+            case "13B5":
+                System.out.println(Style.CYAN+"\tThis is an ARM device."+Style.RESET);
+                break;
+            default:
+                System.out.println(Style.CYAN+"\tUnknown device vendor."+Style.RESET);
+                break;
+        }
+    }
 }
