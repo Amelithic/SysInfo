@@ -1,14 +1,18 @@
 # SysInfo Java Tool
 
-*Project to create a "sysinfo" utility in Java that describes computer CPU, speed, RAM, disk, attached devices.*
+> *Project to create a "sysinfo" utility in Java that describes computer CPU, speed, RAM, disk, attached devices.*
 
-<p>Collaborators: Amelie McCarthy, Aidan Tomasko, Adam Ryan, Anav Vashisht
-Group 13 - A4</p>
+<p>Collaborators: Amelie McCarthy, Aidan Tomasko, Adam Ryan, Anav Vashisht</p>
 
-<p>Amelie -> RAM
-Adam -> CPU
-Aidan -> Attached Devices (PCI and USB)
-Anav -> Disks</p>
+**Group 13 - A4**
+
+| Author  | Section |
+| :------------: |:-----------:|
+| Amelie      | RAM information    |
+| Adam      | CPU and cache information    |
+| Aidan      | Attached Devices (PCI and USB)     |
+| Anav      | Disks information    |
+
 
 ---
 
