@@ -104,7 +104,7 @@ public class SysInfo {
                     break;
 
                 case 5:
-                    System.out.println("Exiting program...");
+                    System.out.println(Style.DIMMED+"Exiting program..."+Style.RESET);
                     activeChoice = false;
                     break;
 
