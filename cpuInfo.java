@@ -75,27 +75,48 @@ public class cpuInfo {
 
                 case 1:
                     Style.resetScreen();
+
                     CoreType();
+
+                    Style.waitBuffer();
+                    Style.resetScreen();
                     break;
 
                 case 2:
                     Style.resetScreen();
+
                     CacheSizes();
+
+                    Style.waitBuffer();
+                    Style.resetScreen();
                     break;
 
                 case 3:
+                    Style.resetScreen();
+
+                    System.out.println(Style.BOLD+Style.RED+"Current CPU Performance"+Style.RESET+"\n==================\n");
                     CpuPerformance();
+                    System.out.println(Style.BOLD+Style.RED+"\n\nCPU Load Analysis"+Style.RESET+"\n==================\n");
+                    cpuLoadCheck();
+
+                    Style.waitBuffer();
+                    Style.resetScreen();
                     break;
 
                 case 4:
+                    Style.resetScreen();
                     CoreType();
                     CacheSizes();
                     CpuPerformance();
+                    cpuLoadCheck();
+
+                    Style.waitBuffer();
+                    Style.resetScreen();
                     break;
 
                 case 5:
                     Style.resetScreen();
-                    System.out.println(Style.RED + "Exiting program... Goodbye!" + Style.RESET);
+                    System.out.println(Style.RED + "Exiting CPU menu... Goodbye!" + Style.RESET);
                     x = false;
                     break;
 
@@ -126,7 +147,7 @@ public class cpuInfo {
         System.out.println(Style.YELLOW + "L2 Cache Size: " + Style.RESET + l2CacheSize() + " bytes");
         System.out.println(Style.YELLOW + "L3 Cache Size: " + Style.RESET + l3CacheSize() + " bytes"); 
         System.out.println(Style.YELLOW + "Total cache size: " + Style.RESET + 
-         (l1dCacheSize()+l1iCacheSize()+l2CacheSize()+l3CacheSize()) + " bytes"); 
+         (l1dCacheSize()+l1iCacheSize()+l2CacheSize()+l3CacheSize()) + " bytes\n"); 
     }
    
    
@@ -155,6 +176,68 @@ public class cpuInfo {
                             break;
                         }
     } 
+
+    public void cpuLoadCheck() {
+        read(); //needs to initially read to not output 0
+        System.out.println(Style.DIMMED+"\nReading...\n"+Style.RESET);
+        
+
+        //START OF CHECK - READ CPU INITIAL VALUES
+        read(1);
+        int cores = coresPerSocket();
+        System.out.println("Cores: "+cores);
+
+        //Iterate cores and store initial ratios of use per core
+        double initial_ratio[][] = new double[cores][1];
+
+        for (int i=0; i < cores; i++) {
+            long coreIdleTime = getIdleTime(i);
+            long coreTotalTime = getIdleTime(i) + getUserTime(i) + getSystemTime(i);
+
+            System.out.println(Style.CYAN+"Core"+i+Style.RESET);
+            System.out.println(Style.BOLD+"\tIdle time: "+Style.RESET+coreIdleTime);
+            System.out.println(Style.BOLD+"\tTotal time: "+Style.RESET+coreTotalTime);
+        
+            initial_ratio[i][0] = (double) coreIdleTime / coreTotalTime;
+            System.out.println(Style.BOLD+"\n\tRatio: "+Style.RESET+initial_ratio[i][0]);
+        }
+
+
+        //CHECK AFTER 1000 MILLISECONDS - READ CPU FINAL VALUES
+        read(1);
+        System.out.println(Style.BOLD+Style.GREEN+"\n Final values after 1s:\n"+Style.RESET);
+
+        //Iterate cores and store final ratios of use per core
+        double final_ratio[][] = new double[cores][1];
+
+        for (int i=0; i < cores; i++) {
+            long coreIdleTime = getIdleTime(i);
+            long coreTotalTime = getIdleTime(i) + getUserTime(i) + getSystemTime(i);
+
+            System.out.println(Style.CYAN+"Core"+i+Style.RESET);
+            System.out.println(Style.BOLD+"\tIdle time: "+Style.RESET+coreIdleTime);
+            System.out.println(Style.BOLD+"\tTotal time: "+Style.RESET+coreTotalTime);
+        
+            final_ratio[i][0] = (double) coreIdleTime / coreTotalTime;
+            System.out.println(Style.BOLD+"\n\tRatio: "+Style.RESET+final_ratio[i][0]);
+            System.out.println();
+        }
+
+
+        //DISPLAY RESULTS OF RATIOS - RETURN INCREASE/DECREASE IN CPU LOAD
+        System.out.println(Style.BOLD+Style.GREEN+"Results..."+Style.RESET);
+
+        for (int i=0; i < cores; i++) {
+            double ratio = final_ratio[i][0] - initial_ratio[i][0];
+
+            System.out.println(Style.CYAN+"Core"+i+Style.RESET);
+            System.out.println(Style.BOLD+"Change in ratio (decimal of CPU in use): "+Style.RESET+ratio);
+
+            String ratioChange = ((ratio > 0)? "increased" : "decreased");
+            System.out.printf(Style.GREEN+"CPU load has "+Style.BOLD+"%s"+Style.RESET+Style.GREEN+" by %.2f percent\n"+Style.RESET,ratioChange,Math.abs(ratio*100));
+        }
+
+    }
 
 }  
     
