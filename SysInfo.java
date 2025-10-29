@@ -15,7 +15,7 @@ public class SysInfo {
             switch (selection) {
                 case 1:
                     Style.resetScreen();
-                    System.out.println("CPU");
+                    System.out.println(Style.RED+"CPU"+Style.RESET);
                     System.out.println();//newline
 
                     cpuInfo testCPU = new cpuInfo();
@@ -68,7 +68,7 @@ public class SysInfo {
 
                 case 3:
                     Style.resetScreen();
-                    System.out.println("Disk");
+                    System.out.println(Style.RED+"Disk"+Style.RESET);
                     System.out.println();//newline
 
                     diskInfo testDisk = new diskInfo();
@@ -81,7 +81,7 @@ public class SysInfo {
 
                 case 4:
                     Style.resetScreen();
-                    System.out.println("Attached Devices");
+                    System.out.println(Style.RED+"Attached Devices"+Style.RESET);
                     System.out.println();//newline
 
                     pciInfo testPCI = new pciInfo();
