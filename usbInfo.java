@@ -51,13 +51,15 @@ class usbArrays {
     public usbArrays() {
         usbinfo.read();
 
+        System.err.println(usbinfo.deviceCount(1));
+
         int busCount = usbinfo.busCount ();
 
-        for (int b = 0; b < busCount; b++) {
+        for (int b = 0; b < busCount+1; b++) {
                 BusesUSB bus = new BusesUSB();
 
                 int deviceCount = usbinfo.deviceCount (b);
-                for (int d = 0; d < deviceCount; d++) {
+                for (int d = 0; d < deviceCount+1; d++) {
                     int vendor = usbinfo.vendorID (b, d);
                     int product = usbinfo.productID (b, d);
                     bus.busesAr.add(new DevicesUSB (vendor, product));
@@ -74,24 +76,21 @@ class usbArrays {
         public void printUSBStructure() {
             System.out.println(Style.BOLD+Style.RED+"\nAttached USB Devices\n"+Style.RESET);
             for (int b = 0; b < usbAr.size(); b++) {
-                if (usbAr.get(b).busesAr.isEmpty()) {
-                    continue;
-                }
                 
                 System.out.println("USB Bus " + b);
                 BusesUSB bus = usbAr.get(b);
 
-                //System.out.println("Bus " + b + " has " + bus.busesAr.size() + " devices.\n"); //debug line
+                // System.out.println("Bus " + b + " has " + bus.busesAr.size() + " devices.\n"); //debug line
 
                 for (int d = 0; d < bus.busesAr.size(); d++) {
                     DevicesUSB device = bus.busesAr.get(d);
                     if (!(device.vendorID == 0) && !(device.productID == 0)) {
                         //if not empty device
-                        System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> Vendor: 0x%04X, Product: 0x%04X\n", d, device.vendorID, device.productID);
+                        System.out.printf(Style.YELLOW+"   USB Device %s "+Style.RESET+"-> Vendor: 0x%04X, Product: 0x%04X\n", Integer.toHexString(d), device.vendorID, device.productID);
                         vendorIdCheck(device.vendorID);
                     } else {
-                        System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> "+Style.RED+"Empty or unavailable device.\n"+Style.RESET, d);
-                        vendorIdCheck(device.vendorID);
+                        // System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> "+Style.RED+"Empty or unavailable device.\n"+Style.RESET, d);
+                        // vendorIdCheck(device.vendorID);
                     }
 
 
@@ -120,6 +119,9 @@ class usbArrays {
                 break;
             case "13B5":
                 System.out.println(Style.CYAN+"\tThis is an ARM device."+Style.RESET);
+                break;
+            case "1D6B":
+                System.out.println(Style.CYAN+"\tThis is a Linux device."+Style.RESET);
                 break;
             case "0871", "0781":
                 System.out.println(Style.CYAN+"\tThis is a Sandisk device."+Style.RESET);
