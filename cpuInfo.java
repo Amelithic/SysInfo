@@ -142,7 +142,7 @@ public class cpuInfo {
     public void CacheSizes(){
         
         System.out.println(Style.YELLOW + "L1 Data Cache Size: " + Style.RESET + l1dCacheSize() + " bytes");
-        System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize());
+        System.out.println(Style.YELLOW + "L1 Instruction Cache Size: " + Style.RESET + l1iCacheSize() + " bytes");
         System.out.println(Style.YELLOW + "L1 Total Cache Size: " + Style.RESET + (l1dCacheSize()+l1iCacheSize()) + " bytes");
         System.out.println(Style.YELLOW + "L2 Cache Size: " + Style.RESET + l2CacheSize() + " bytes");
         System.out.println(Style.YELLOW + "L3 Cache Size: " + Style.RESET + l3CacheSize() + " bytes"); 
@@ -205,7 +205,7 @@ public class cpuInfo {
 
         //CHECK AFTER 1000 MILLISECONDS - READ CPU FINAL VALUES
         read(1);
-        System.out.println(Style.BOLD+Style.GREEN+"\n Final values after 1s:\n"+Style.RESET);
+        System.out.println(Style.BOLD+Style.GREEN+"\nFinal values after 1s:\n"+Style.RESET);
 
         //Iterate cores and store final ratios of use per core
         double final_ratio[][] = new double[cores][1];
@@ -225,7 +225,7 @@ public class cpuInfo {
 
 
         //DISPLAY RESULTS OF RATIOS - RETURN INCREASE/DECREASE IN CPU LOAD
-        System.out.println(Style.BOLD+Style.GREEN+"Results..."+Style.RESET);
+        System.out.println(Style.BOLD+Style.GREEN+"Results...\n"+Style.RESET);
 
         for (int i=0; i < cores; i++) {
             double ratio = final_ratio[i][0] - initial_ratio[i][0];
