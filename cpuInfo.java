@@ -233,7 +233,7 @@ public class cpuInfo {
             System.out.println(Style.CYAN+"Core"+i+Style.RESET);
             System.out.println(Style.BOLD+"Change in ratio (decimal of CPU in use): "+Style.RESET+ratio);
 
-            String ratioChange = ((ratio > 0)? "increased" : "decreased");
+            String ratioChange = ((ratio > 0)? "decreased" : "increased");
             System.out.printf(Style.GREEN+"CPU load has "+Style.BOLD+"%s"+Style.RESET+Style.GREEN+" by %.2f percent\n"+Style.RESET,ratioChange,Math.abs(ratio*100));
         }
 
