@@ -48,42 +48,52 @@ class usbArrays {
     List<BusesUSB> usbAr = new ArrayList<>();
     usbInfo usbinfo = new usbInfo();
 
-        public usbArrays() {
-            usbinfo.read();
+    public usbArrays() {
+        usbinfo.read();
 
-            int busCount = usbinfo.busCount ();
+        int busCount = usbinfo.busCount ();
 
-            for (int b = 0; b < busCount; b++) {
-                    BusesUSB bus = new BusesUSB();
+        for (int b = 0; b < busCount; b++) {
+                BusesUSB bus = new BusesUSB();
 
-                    int deviceCount = usbinfo.deviceCount (b);
-                    for (int d = 0; d < deviceCount; d++) {
-                        int vendor = usbinfo.vendorID (b, d);
-                        int product = usbinfo.productID (b, d);
-                        bus.busesAr.add(new DevicesUSB (vendor, product));
-                    }
-
-                    //Only add if bus has at least one valid device
-                    if (!bus.busesAr.isEmpty()) {
-                        usbAr.add(bus);
-                    }
+                int deviceCount = usbinfo.deviceCount (b);
+                for (int d = 0; d < deviceCount; d++) {
+                    int vendor = usbinfo.vendorID (b, d);
+                    int product = usbinfo.productID (b, d);
+                    bus.busesAr.add(new DevicesUSB (vendor, product));
                 }
+
+                //Only add if bus has at least one valid device
+                if (!bus.busesAr.isEmpty()) {
+                    usbAr.add(bus);
+                }
+            }
         }
 
         //Print Structure
         public void printUSBStructure() {
             System.out.println(Style.BOLD+Style.RED+"\nAttached USB Devices\n"+Style.RESET);
             for (int b = 0; b < usbAr.size(); b++) {
-                if (!usbAr.get(b).busesAr.isEmpty()) {
+                if (usbAr.get(b).busesAr.isEmpty()) {
                     continue;
                 }
-                    System.out.println("USB Bus " + b);
-                    BusesUSB bus = usbAr.get(b);
+                
+                System.out.println("USB Bus " + b);
+                BusesUSB bus = usbAr.get(b);
+
+                //System.out.println("Bus " + b + " has " + bus.busesAr.size() + " devices.\n"); //debug line
 
                 for (int d = 0; d < bus.busesAr.size(); d++) {
                     DevicesUSB device = bus.busesAr.get(d);
-                    System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> Vendor: 0x%04X, Product: 0x%04X%n", d, device.vendorID, device.productID);
-                    vendorIdCheck(device.vendorID);
+                    if (!(device.vendorID == 0) && !(device.productID == 0)) {
+                        //if not empty device
+                        System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> Vendor: 0x%04X, Product: 0x%04X\n", d, device.vendorID, device.productID);
+                        vendorIdCheck(device.vendorID);
+                    } else {
+                        System.out.printf(Style.YELLOW+"   USB Device %d "+Style.RESET+"-> "+Style.RED+"Empty or unavailable device.\n"+Style.RESET, d);
+                        vendorIdCheck(device.vendorID);
+                    }
+
 
                 }
             }
@@ -110,6 +120,12 @@ class usbArrays {
                 break;
             case "13B5":
                 System.out.println(Style.CYAN+"\tThis is an ARM device."+Style.RESET);
+                break;
+            case "0871", "0781":
+                System.out.println(Style.CYAN+"\tThis is a Sandisk device."+Style.RESET);
+                break;
+            case "0408":
+                System.out.println(Style.CYAN+"\tThis is a Quanta device."+Style.RESET);
                 break;
             default:
                 System.out.println(Style.CYAN+"\tUnknown device vendor."+Style.RESET);
